@@ -1,32 +1,73 @@
-# Variables de entorno (CRITICO - nunca subir)
+# Variables de entorno (CRITICO - NUNCA SUBIR)
 .env
 .env.local
 .env.production
 .env.development
+.env.staging
+.env.test
 
-# Base de datos local
+# Informacion sensible del proyecto
+claude.md
+CLAUDE.md
+claude.txt
+SECURITY.md
+check-security.py
+
+# Archivos de configuracion sensibles
+config.json
+secrets.json
+credentials.json
+auth.json
+
+# Claves y certificados
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+
+# Base de datos locales
 *.db
+*.sqlite
+*.sqlite3
 database.db
 
-# Claude context (informacion sensible)
-claude.md
+# Logs con informacion sensible
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Dependencies
+# Dependencias
 node_modules/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 .Python
 env/
 venv/
+ENV/
 
-# IDE
+# IDE y editores
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-# OS
+# Sistema operativo
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Logs
-*.log
-logs/
+# Temporales de compilacion
+dist/
+build/
+.next/
+.cache/

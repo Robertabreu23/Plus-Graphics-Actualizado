@@ -12,22 +12,41 @@ from dotenv import load_dotenv
 # Cargar variables de entorno
 load_dotenv()
 
-# Credenciales desde variables de entorno para multiple acceso simultaneo
-ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'admin@plusgraphics.com')
-ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'PlusGraphics2024!')
-EMPLOYEE_EMAIL = os.getenv('EMPLOYEE_EMAIL', 'empleado@plusgraphics.com')  
-EMPLOYEE_PASSWORD = os.getenv('EMPLOYEE_PASSWORD', 'Empleado2024!')
+# Credenciales SOLO desde variables de entorno - SIN valores por defecto expuestos
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
+ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
+EMPLOYEE_EMAIL = os.getenv('EMPLOYEE_EMAIL')
+EMPLOYEE_PASSWORD = os.getenv('EMPLOYEE_PASSWORD')
+
+# Verificacion de seguridad al iniciar aplicacion
+def verificar_variables_entorno():
+    """Verificar que todas las variables criticas esten configuradas"""
+    variables_requeridas = [
+        'ADMIN_EMAIL', 'ADMIN_PASSWORD', 
+        'EMPLOYEE_EMAIL', 'EMPLOYEE_PASSWORD'
+    ]
+    
+    faltantes = [var for var in variables_requeridas if not os.getenv(var)]
+    
+    if faltantes:
+        print(f"ERROR: Variables de entorno faltantes: {faltantes}")
+        print("Sistema no puede iniciar sin credenciales configuradas")
+        return False
+    
+    print("✅ Variables de entorno de seguridad configuradas correctamente")
+    return True
 
 def check_login_credentials(email, password):
-    """
-    Verificar credenciales desde variables de entorno
-    Permite multiple acceso simultaneo con mismas credenciales
-    """
+    """Verificar credenciales desde variables de entorno seguras"""
+    if not verificar_variables_entorno():
+        raise Exception("Variables de entorno no configuradas")
+    
     valid_credentials = {
         ADMIN_EMAIL: ADMIN_PASSWORD,
         EMPLOYEE_EMAIL: EMPLOYEE_PASSWORD
     }
-    return email in valid_credentials and valid_credentials[email] == password
+    
+    return email in valid_credentials and valid_credentials.get(email) == password
 
 # Conexión a la base de datos
 def get_db_connection():
@@ -2092,6 +2111,10 @@ def api_test():
     })
 
 if __name__ == '__main__':
+    # Verificar seguridad antes de iniciar
+    if not verificar_variables_entorno():
+        exit(1)
+    
     init_db()
     
     # Configuracion simple para Render
