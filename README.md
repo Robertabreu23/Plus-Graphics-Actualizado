@@ -1,7 +1,7 @@
 # Plus Graphics - Sistema de Gestión Empresarial
 
 **Sistema integral de gestión para Plus Graphics** - Empresa especializada en servicios GFX (Graphics) y VFX (Visual Effects).
-
+Hecho por Robert Abreu y Jose Rodriguez.
 ## 🚀 Características Principales
 
 - ✅ **Dashboard Principal** con estadísticas en tiempo real
@@ -210,6 +210,7 @@ Para soporte técnico o consultas sobre deployment, contactar al desarrollador d
 El sistema Plus Graphics está completamente terminado con todas las funcionalidades implementadas, retoques finales aplicados y configuraciones de deployment preparadas. Listo para presentar al cliente y poner en producción.
 
 ---
+<img width="1599" height="814" alt="image" src="https://github.com/user-attachments/assets/f901aed2-5e1f-4337-93a6-dc46dd2fc669" />
 
 *Desarrollado con ❤️ para Plus Graphics*  
 *Última actualización: 2025-08-09*
